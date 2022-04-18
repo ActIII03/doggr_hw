@@ -5,9 +5,6 @@ import axois from "axios";
 import Minimal from "./src/minimal";
 
 //================== Armant's tests =================//
-// NOTE: I could not figure out how to use jest. Not finished.
-
-//================== Armant's tests =================//
 const request = require("supertest");
 const app = Minimal();
 

@@ -5,7 +5,7 @@
 
 - Resources:
 
-  - https://junyonglee.me/github/How-to-make-forked-private-repository/
+  - [How to Make Forked Private Repository](https://junyonglee.me/github/How-to-make-forked-private-repository/)
 
 - 04/13:
 

@@ -36,7 +36,7 @@ app.put("/about", (req, res) => {
 
 app.put("/", (req, res) => {
 	fs.readFile(
-		path.resolve(__dirname, "..", "public", "index.html"),
+		path.resolve(__dirname, "..", "public", "put.html"),
 		(err, data) => {
 			if (err) {
 				console.log("Get / Errored!\n");
@@ -55,7 +55,7 @@ app.post("/about", (req, res) => {
 
 app.post("/", (req, res) => {
 	fs.readFile(
-		path.resolve(__dirname, "..", "public", "index.html"),
+		path.resolve(__dirname, "..", "public", "post.html"),
 		(err, data) => {
 			if (err) {
 				console.log("Get / Errored!\n");
@@ -73,7 +73,7 @@ app.del("/about", (req, res) => {
 
 app.del("/", (req, res) => {
 	fs.readFile(
-		path.resolve(__dirname, "..", "public", "index.html"),
+		path.resolve(__dirname, "..", "public", "delete.html"),
 		(err, data) => {
 			if (err) {
 				console.log("Get / Errored!\n");
@@ -91,7 +91,7 @@ app.patch("/about", (req, res) => {
 
 app.patch("/", (req, res) => {
 	fs.readFile(
-		path.resolve(__dirname, "..", "public", "index.html"),
+		path.resolve(__dirname, "..", "public", "patch.html"),
 		(err, data) => {
 			if (err) {
 				console.log("Get / Errored!\n");
@@ -103,10 +103,12 @@ app.patch("/", (req, res) => {
 	);
 });
 
-const server = app.listen(9000, () => {
+const server = app.listen(8080, () => {
 	console.log("Server is running");
 });
 
 export function addNumbersTestExample(a, b) {
 	return a + b;
 }
+
+module.exports = app;

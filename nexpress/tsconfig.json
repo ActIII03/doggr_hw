@@ -1,26 +1,21 @@
 {
-  "compilerOptions": {
-    "outDir": "dist",
-    "rootDir": "./",
-    "lib": [ "ES6", "DOM" ],
-    "target": "es6",
-    "module": "CommonJS",
-    "moduleResolution": "node",
-    "declaration": true,
-    "sourceMap": true,
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "noImplicitAny": false,
-    "strict": false,
-    "noImplicitOverride": false,
-    "noImplicitReturns": false,
-    "noImplicitThis": false,
-    
-  },
-  "include": [
-    "server.js",
-    "src/**/*",
-
-  ]
+	"compilerOptions": {
+		"outDir": "dist",
+		"rootDir": "./",
+		"lib": ["ES6", "DOM"],
+		"target": "es6",
+		"module": "CommonJS",
+		"moduleResolution": "node",
+		"declaration": true,
+		"sourceMap": true,
+		"allowJs": true,
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"noImplicitAny": false,
+		"strict": false,
+		"noImplicitOverride": false,
+		"noImplicitReturns": false,
+		"noImplicitThis": false
+	},
+	"include": ["server.js", "src/**/*", "src/*"]
 }

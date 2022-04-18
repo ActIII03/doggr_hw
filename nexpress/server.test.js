@@ -1,73 +1,88 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable arrow-body-style */
 /* eslint-disable no-tabs */
-import { assert } from "console";
-import { addNumbersTestExample as addNumbers } from "./server";
+import axois from "axios";
 import Minimal from "./src/minimal";
 
+//================== Armant's tests =================//
 // NOTE: I could not figure out how to use jest. Not finished.
-
-describe("Server test suite", () => {
-	it("Should add 2+3 properly to 5", () => {
-		let result = addNumbers(2, 3);
-
-		expect(result).toBe(5);
-	});
-});
 
 //================== Armant's tests =================//
 const request = require("supertest");
-
 const app = Minimal();
 
 // PUT
+describe("Test the root path (PUT)", () => {
+	test("Response for PUT should be 200", (done) => {
+		let result = axois.put("localhost:9000/").then(function (response) {
+			expect(response.statusCode).toBe(200);
+		});
+		done();
+	});
+});
 
-describe("Test the root path", () => {
-	test("It should response the PUT method", (done) => {
-		request(app)
-			.put("/")
-			.then((response) => {
-				expect(response.statusCode).toBe(200);
-				done();
-			});
+describe("Test the /about path (PUT)", () => {
+	test("Response for PUT should be 200", (done) => {
+		let result = axois.put("localhost:9000/about").then(function (response) {
+			expect(response.statusCode).toBe(200);
+		});
+		done();
 	});
 });
 
 // POST
-
-describe("Test the root path", () => {
-	test("It should response the POST method", (done) => {
-		request(app)
-			.post("/")
-			.then((response) => {
-				expect(response.statusCode).toBe(200);
-				done();
-			});
+describe("Test the root path (POST)", () => {
+	test("Response for POST should be 200", (done) => {
+		let result = axois.post("localhost:9000/").then(function (response) {
+			expect(response.statusCode).toBe(200);
+		});
+		done();
 	});
 });
 
-//DELETE
-
-describe("Test the root path", () => {
-	test("It should response the DELETE method", (done) => {
-		request(app)
-			.post("/")
-			.then((response) => {
-				expect(response.statusCode).toBe(200);
-				done();
-			});
+describe("Test the /about path (POST)", () => {
+	test("Response for PUT should be 200", (done) => {
+		let result = axois.post("localhost:9000/about").then(function (response) {
+			expect(response.statusCode).toBe(200);
+		});
+		done();
 	});
 });
 
-//PATCH
+////DELETE
+describe("Test the root path (DELETE)", () => {
+	test("Response for POST should be 200", (done) => {
+		let result = axois.delete("localhost:9000/").then(function (response) {
+			expect(response.statusCode).toBe(200);
+		});
+		done();
+	});
+});
 
-describe("Test the root path", () => {
-	test("It should response the PATCH method", (done) => {
-		request(app)
-			.patch("/")
-			.then((response) => {
-				expect(response.statusCode).toBe(200);
-				done();
-			});
+describe("Test the /about path (DELETE)", () => {
+	test("Response for PUT should be 200", (done) => {
+		let result = axois.delete("localhost:9000/about").then(function (response) {
+			expect(response.statusCode).toBe(200);
+		});
+		done();
+	});
+});
+
+// PATCH
+describe("Test the root path (PATCH)", () => {
+	test("Response for PATCH should be 200", (done) => {
+		let result = axois.patch("localhost:9000/").then(function (response) {
+			expect(response.statusCode).toBe(200);
+		});
+		done();
+	});
+});
+
+describe("Test the /about path (PATCH)", () => {
+	test("Response for PATCH should be 200", (done) => {
+		let result = axois.patch("localhost:9000/about").then(function (response) {
+			expect(response.statusCode).toBe(200);
+		});
+		done();
 	});
 });

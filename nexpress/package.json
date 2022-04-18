@@ -7,7 +7,7 @@
 		"build": "npx tsc",
 		"start": "nodemon ./dist/server.js",
 		"dev": "concurrently -k \"npx tsc -w \" \"nodemon ./dist/server.js\"",
-		"test": "jest",
+		"test": "jest --watch",
 		"lint": "eslint ."
 	},
 	"keywords": [],
@@ -22,6 +22,7 @@
 		"@typescript-eslint/eslint-plugin": "^5.16.0",
 		"@typescript-eslint/parser": "^5.16.0",
 		"ava": "^4.2.0",
+		"axios": "^0.26.1",
 		"concurrently": "^7.0.0",
 		"eslint": "^8.11.0",
 		"eslint-config-airbnb": "^19.0.4",

@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "module": "es2020",
+    "target": "es6",
+    "allowJs": false,
+    "declaration": true,
+    "declarationDir": "dist",
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "jsx": "react",
+    // QoL
+    "strict": true,
+    "strictNullChecks": true,
+    "noImplicitAny": false,
+    "strictPropertyInitialization": true
+  },
+  "include": [
+    "src/**/*",
+    "src/App.tsx"
+  ],
+  "files": [
+    "src/index.tsx"
+  ],
+  "outDir": "dist",
+}

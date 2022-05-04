@@ -1,0 +1,24 @@
+version: "3"
+services:
+    doggrdb:
+        container_name: doggrdb
+        image: mongo
+        volumes:
+            - /data/doggrdb:/data/db # this is format of host_path:container_path
+    backend:
+        container_name: backend
+        build: ./backend/
+        restart: always           
+        ports:
+            - "9000:9000" # This will be the ONLY port exposed externally anywhere        
+        depends_on:
+            - doggrdb
+    frontend:
+       container_name: frontend
+       build: ./frontend/
+       volumes:
+            - './frontend:/app' # This pulls in all of our code and mounts it
+            - '/app/node_modules' #This prevents us from copying our node_modules when mounting
+       ports:
+            - 3000:3000
+

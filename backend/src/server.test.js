@@ -2,7 +2,7 @@ import { assert } from "console";
 import request from "supertest";
 import express from "express";
 
-import setupRoutes from "./src/routes";
+import setupRoutes from "./routes";
 
 const app = express();
 setupRoutes(app);

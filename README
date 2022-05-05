@@ -1,0 +1,1 @@
+You'll need to set up your .env files appropriately.  Copy either the .env.local.example or .env.docker.example to `.env` and change variables appropriately in backend/ and frontend/ both.

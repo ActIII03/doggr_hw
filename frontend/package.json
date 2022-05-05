@@ -2,9 +2,9 @@
   "name": "doggr_client",
   "version": "0.1.0",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-dotenv && react-scripts start",
+    "build": "react-dotenv && react-scripts build",
+    "test": "react-dotenv && react-scripts test",
     "NONOSPOT": "react-scripts eject",
     "typecheck": "tsc --noEmit -p ."
   },
@@ -36,6 +36,7 @@
     "react": "^18.1.0",
     "react-bootstrap": "^2.3.1",
     "react-dom": "^18.1.0",
+    "react-dotenv": "^0.1.3",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
@@ -59,5 +60,8 @@
     "jest": "^27.5.1",
     "ts-jest": "^27.1.3",
     "typescript": "^4.6.4"
+  },
+  "react-dotenv": {
+    "whitelist": ["BACKEND_API"]
   }
 }

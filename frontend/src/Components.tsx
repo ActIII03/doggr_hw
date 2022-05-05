@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Profile as ProfileType } from "./types/StateTypes";
 import { Link, Outlet } from "react-router-dom";
+import { User } from "./services/UserService";
 
 export type ProfileProps = {
   id: number,
@@ -19,7 +20,7 @@ export function Profile(props: ProfileProps) {
 
   return (
     <div>
-      <img src={imgUri} alt="Profile of pet"/>
+      <img src={imgUri} alt="Profile of pet" />
       <h2>{name}</h2>
       <div>
         <button onClick={onPassButtonClick}>Pass</button>
@@ -127,8 +128,103 @@ export const Header = () => {
     <Link to="/">Dashboard</Link>
     &nbsp; | &nbsp;
     <Link to="/match-history">Match History</Link>
+    &nbsp; | &nbsp;
+    <Link to="/create-user">Create User</Link>
     <br />
     <Outlet />
   </div>
   );
+}
+
+
+const initialUserState = {
+  email: "",
+  password: "",
+};
+
+export const CreateUser = () => {
+
+  const [user, setUser] = useState(initialUserState);
+  const [submitted, setSubmitted] = useState(false);
+  const [submitFailed, setSubmitFailed] = useState(false);
+
+
+  const handleInputChange = event => {
+    const { name, value } = event.target;
+    setUser({ ...user, [name]: value });
+  };
+
+  const saveUser = () => {
+    User.create(user)
+      .then(res => {
+        setSubmitted(true);
+        setSubmitFailed(false);
+        console.log(res.data);
+      })
+      .catch(e => {
+        setSubmitFailed(true);
+        console.log("Error creating new user", e);
+      })
+  }
+
+  const resetUser = () => {
+    setUser(initialUserState);
+    setSubmitted(false);
+  }
+
+  return (
+    <div>
+      {submitted ? (
+        <>     {/* If we've already submitted, show this piece*/}
+          <h4>You submitted successfully!</h4>
+          <button onClick={resetUser}>
+            Reset
+          </button>
+        </>
+      ) : (
+        <>   {/* If we've NOT already submitted, show this piece*/}
+          {submitFailed && //This will only render if our prior submit failed
+            //we could add a div here and style this separately
+            <h2>Email already exists!</h2>
+          }
+          <CreateUserForm handleInputChange={handleInputChange} saveUser={saveUser} user={user} />
+        </>
+      )
+      }
+    </div>
+  )
+}
+
+export const CreateUserForm = ({ handleInputChange, saveUser, user }) => {
+  return (
+    <div>
+      <div>
+        <label htmlFor="email">Email</label>
+        <input
+          type="text"
+          id="email"
+          required
+          value={user.email}
+          onChange={handleInputChange}
+          name="email"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="password">Password</label>
+        <input
+          type="text"
+          id="password"
+          required
+          value={user.password}
+          onChange={handleInputChange}
+          name="password"
+        />
+      </div>
+
+      <button onClick={saveUser}>
+        Create
+      </button>
+    </div>
+  )
 }

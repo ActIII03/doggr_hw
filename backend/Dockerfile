@@ -14,6 +14,8 @@ COPY package.json package-lock.json ./
 RUN npm ci 
 
 COPY --chown=node:node . .
+# We ignore the local .env, but need to use the docker one in its place
+#RUN mv .env.docker .env
 EXPOSE 9000
 
 # Note you should be more extensive here if worried about deploying to Prod!

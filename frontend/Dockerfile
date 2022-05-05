@@ -8,7 +8,7 @@ RUN apt-get update
 RUN apt-get install -y apt-utils nano
 
 # add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
+#ENV PATH /app/node_modules/.bin:$PATH
 
 # install app dependencies
 COPY package.json ./
@@ -21,6 +21,7 @@ COPY . .
 # Docker annoyingly tries to persist perms on node_modules as being "root"
 # if we happen to have a local copy of node_modules
 RUN chown -R node:node /app/node_modules
+#RUN mv .env.docker .env
 
 # Not technically needed, but shows intent
 EXPOSE 3000

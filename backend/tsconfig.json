@@ -22,7 +22,7 @@
     "noImplicitThis": false,
   },
   "include": [
-    "server.ts",
+    "src/server.ts",
     "src/**/*",
   ]
 }

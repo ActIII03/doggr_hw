@@ -1,0 +1,44 @@
+version: "3"
+services:
+    doggrdb:
+        container_name: doggrdb
+        image: mongo
+        volumes:
+            - /data/doggrdb:/data/db # this is format of host_path:container_path
+    postgres:
+        container_name: postgres
+        image: postgres
+        restart: always
+        ports:
+            - "5432:5432"
+        environment:
+            - POSTGRES_DB=doggrdb
+            - POSTGRES_USER=doggr_user
+            - POSTGRES_PASSWORD=doggr_pass
+    # backend:
+    #     container_name: backend
+    #     build: ./backend/
+    #     restart: always
+    #     volumes:
+    #         # This pulls in all of our code and mounts it
+    #         # This allows us to quickly change our code and view results automatically
+    #         # But should be REMOVED in a Production Compose setup
+    #         - './backend:/app'
+    #         - '/app/node_modules' #This prevents us from copying our node_modules when mounting
+    #     ports:
+    #         - "9000:9000" 
+    #     depends_on: #This is a lie
+    #         - doggrdb
+    #         - postgres
+    # frontend:
+    #    container_name: frontend
+    #    build: ./frontend/
+    #    volumes:
+    #         - './frontend:/app'
+    #         - '/app/node_modules' #This prevents us from copying our node_modules when mounting
+    #    ports:
+    #         - 3000:3000
+    #    depends_on:
+    #         - doggrdb
+    #         - postgres
+    #         - backend

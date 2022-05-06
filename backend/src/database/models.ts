@@ -19,28 +19,22 @@ export const User = db.define("users", {
 	},
 });
 
-/*
-
 // random image generator (API): https://www.petfinder.com/developers/v2/docs/
 
-export const Profile = db.define('profile'){
+export const Profile = db.define("profile", {
+	imgUri: {
+		type: DataTypes.STRING,
+	},
 
-  imgUri: { 
-    type: DataTypes.STRING,
-  },
+	thumbUri: {
+		type: DataTypes.STRING,
+	},
 
-  thumbUri: {
-    type: DataTypes.STRING,
-  },
-  
-  name: {
-    type: DataTypes.STRING,
-  },
+	name: {
+		type: DataTypes.STRING,
+	},
 
-  id: {
-    type: DataTypes.INTEGER,
-  },
-
-}
-
-*/
+	profileId: {
+		type: DataTypes.INTEGER,
+	},
+});

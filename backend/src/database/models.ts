@@ -1,6 +1,5 @@
 import { Sequelize, DataTypes } from "sequelize";
 
-
 const pguser = process.env.PGUSER;
 const pghost = process.env.PGHOST;
 const pgpass = process.env.PGPASSWORD;
@@ -11,13 +10,37 @@ const connstring = `postgres://${pguser}:${pgpass}@${pghost}:${pgport}/${pgdatab
 
 export const db = new Sequelize(connstring);
 
-export const User = db.define('users', {
-  email: {
-    type: DataTypes.STRING,
-  },
-  password: {
-    type: DataTypes.STRING,
-  },
+export const User = db.define("users", {
+	email: {
+		type: DataTypes.STRING,
+	},
+	password: {
+		type: DataTypes.STRING,
+	},
 });
 
+/*
 
+// random image generator (API): https://www.petfinder.com/developers/v2/docs/
+
+export const Profile = db.define('profile'){
+
+  imgUri: { 
+    type: DataTypes.STRING,
+  },
+
+  thumbUri: {
+    type: DataTypes.STRING,
+  },
+  
+  name: {
+    type: DataTypes.STRING,
+  },
+
+  id: {
+    type: DataTypes.INTEGER,
+  },
+
+}
+
+*/

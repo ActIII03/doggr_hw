@@ -1,3 +1,4 @@
+/* eslint-disable no-tabs */
 import "dotenv/config";
 import { Sequelize, DataTypes } from "sequelize";
 import { db, User, Profile } from "./models";
@@ -10,16 +11,10 @@ const userSeedData = [
 // hw2
 const profileSeedData = [
 	{
-		imgUri: "/testUri1",
-		thumbUri: "testThumbUri1",
 		name: "name1",
-		profileId: "123456",
 	},
 	{
-		imgUri: "/testUri2",
-		thumbUri: "testThumbUri2",
 		name: "name2",
-		profileId: "123457",
 	},
 ];
 
@@ -29,6 +24,8 @@ const seed = async () => {
 	// force true will drop the table if it already exists
 	// such that every time we run seed, we start completely fresh
 	await User.sync({ force: true });
+
+	await Profile.sync({ force: true }); // hw2: sync profile table
 
 	console.log("Tables have synced!");
 
@@ -42,8 +39,6 @@ const seed = async () => {
 		});
 
 	// hw2: seed profile (init)
-
-	await Profile.sync({ force: true });
 
 	await Profile.bulkCreate(profileSeedData, { validate: true })
 		.then(() => {

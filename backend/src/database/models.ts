@@ -1,3 +1,4 @@
+/* eslint-disable no-tabs */
 import { Sequelize, DataTypes } from "sequelize";
 
 const pguser = process.env.PGUSER;
@@ -22,19 +23,7 @@ export const User = db.define("users", {
 // random image generator (API): https://www.petfinder.com/developers/v2/docs/
 
 export const Profile = db.define("profile", {
-	imgUri: {
-		type: DataTypes.STRING,
-	},
-
-	thumbUri: {
-		type: DataTypes.STRING,
-	},
-
 	name: {
 		type: DataTypes.STRING,
-	},
-
-	profileId: {
-		type: DataTypes.INTEGER,
 	},
 });

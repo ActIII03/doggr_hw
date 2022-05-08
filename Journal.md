@@ -19,3 +19,10 @@ Steps:
    i. This should have a link in our ghetto nav bar
    ii. It should report to user if the email already exists
    iii. it should report to user upon completion
+
+## 5/5-5/6:
+
+- Worked on Goal (1):
+  - first created models.ts and seed.ts for testing postgres is exposed on 5432 and works when we seed
+- Worked on Goal (2):
+  - added routes and profileService for creating a new profile

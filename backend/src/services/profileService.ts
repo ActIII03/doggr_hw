@@ -3,8 +3,9 @@ import { db, Profile } from "../database/models";
 
 export function createProfile(req, res) {
 	const name = req.body.name;
-	console.log(`in createprofile with ${name}`);
-	Profile.create({ name })
+	const imgUri = req.body.imgUri;
+	console.log(`in createprofile with ${name} and ${imgUri}`);
+	Profile.create({ name, imgUri })
 		.then(() => {
 			console.log("Created single user");
 			res.status(200).json({ message: "Created profile successfully" });

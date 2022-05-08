@@ -3,7 +3,6 @@ import { Profile as ProfileType } from "./types/StateTypes";
 import { Link, Outlet } from "react-router-dom";
 import { User } from "./services/UserService";
 import { ProfileServ } from "./services/ProfileService";
-import { getRandomProfile } from "./initialState";
 
 export type ProfileProps = {
 	id: number;
@@ -32,17 +31,24 @@ export function Profile(props: ProfileProps) {
 	);
 }
 
-// hw2: reuse getRandomProfile()
+// hw2: reuse createProfile()
+const initialProfileState = {
+	name: "",
+	imgUri: "",
+};
 
 export const CreateProfile = () => {
-	// reuse getRandomProfile() here
-	const randProf: ProfileType = getRandomProfile();
-
+	const [Profile, setProfile] = useState(initialProfileState);
 	const [submitted, setSubmitted] = useState(false);
 	const [submitFailed, setSubmitFailed] = useState(false);
 
+	const handleInputChange = (event) => {
+		const { name, value } = event.target;
+		setProfile({ ...Profile, [name]: value });
+	};
+
 	const saveProfile = () => {
-		ProfileServ.create(randProf)
+		ProfileServ.create(Profile)
 			.then((res) => {
 				setSubmitted(true);
 				setSubmitFailed(false);
@@ -50,20 +56,75 @@ export const CreateProfile = () => {
 			})
 			.catch((e) => {
 				setSubmitFailed(true);
-				console.log("Error creating new user", e);
+				console.log("Error creating new profile", e);
 			});
+	};
+
+	const resetProfile = () => {
+		setProfile(initialProfileState);
+		setSubmitted(false);
 	};
 
 	return (
 		<div>
+			{submitted ? (
+				<>
+					{" "}
+					{/* If we've already submitted, show this piece*/}
+					<h4>You submitted successfully!</h4>
+					<button onClick={resetProfile}>Reset</button>
+				</>
+			) : (
+				<>
+					{" "}
+					{/* If we've NOT already submitted, show this piece*/}
+					{submitFailed && ( //This will only render if our prior submit failed
+						//we could add a div here and style this separately
+						<h2>Profile Name already exists!</h2>
+					)}
+					<CreateProfileForm
+						handleInputChange={handleInputChange}
+						saveProfile={saveProfile}
+						profile={Profile}
+					/>
+				</>
+			)}
+		</div>
+	);
+};
+
+export const CreateProfileForm = ({
+	handleInputChange,
+	saveProfile,
+	profile,
+}) => {
+	return (
+		<div>
 			<div>
-				Profile name: {randProf.name} Profile id: {randProf.id}
-				<br />
-				<br />
-				Profile imgUri: {randProf.imgUri}
+				<label htmlFor="name">Name</label>
+				<input
+					type="text"
+					id="name"
+					required
+					value={profile.name}
+					onChange={handleInputChange}
+					name="name"
+				/>
 			</div>
-			<br />
-			<button onClick={saveProfile}>Create Profile</button>
+
+			<div>
+				<label htmlFor="imguri">Image Url</label>
+				<input
+					type="text"
+					id="imguri"
+					required
+					value={profile.imgUri}
+					onChange={handleInputChange}
+					name="imguri"
+				/>
+			</div>
+
+			<button onClick={saveProfile}>Submit Profile</button>
 		</div>
 	);
 };

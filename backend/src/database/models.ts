@@ -26,4 +26,7 @@ export const Profile = db.define("profile", {
 	name: {
 		type: DataTypes.STRING,
 	},
+	imgUri: {
+		type: DataTypes.STRING,
+	},
 });

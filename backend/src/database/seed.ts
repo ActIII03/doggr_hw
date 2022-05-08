@@ -12,9 +12,11 @@ const userSeedData = [
 const profileSeedData = [
 	{
 		name: "name1",
+		imgUri: "imgUri1",
 	},
 	{
 		name: "name2",
+		imgUri: "imgUrir",
 	},
 ];
 

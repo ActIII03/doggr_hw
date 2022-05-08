@@ -2,6 +2,6 @@ import axios from "./HttpService";
 
 export const ProfileServ = {
 	async create(profile) {
-		return axios.post("/profile", { email: profile.name });
+		return axios.post("/profiles", { name: profile.name });
 	},
 };

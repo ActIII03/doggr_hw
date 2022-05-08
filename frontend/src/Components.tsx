@@ -33,13 +33,26 @@ export function Profile(props: ProfileProps) {
 }
 
 // hw2: reuse getRandomProfile()
-const initialProfileState = {
-	name: "",
-};
 
 export const CreateProfile = () => {
 	// reuse getRandomProfile() here
 	const randProf: ProfileType = getRandomProfile();
+
+	const [submitted, setSubmitted] = useState(false);
+	const [submitFailed, setSubmitFailed] = useState(false);
+
+	const saveProfile = () => {
+		ProfileServ.create(randProf)
+			.then((res) => {
+				setSubmitted(true);
+				setSubmitFailed(false);
+				console.log(res.data);
+			})
+			.catch((e) => {
+				setSubmitFailed(true);
+				console.log("Error creating new user", e);
+			});
+	};
 
 	return (
 		<div>
@@ -50,7 +63,7 @@ export const CreateProfile = () => {
 				Profile imgUri: {randProf.imgUri}
 			</div>
 			<br />
-			<button>Create Profile</button>
+			<button onClick={saveProfile}>Create Profile</button>
 		</div>
 	);
 };

@@ -113,14 +113,14 @@ export const CreateProfileForm = ({
 			</div>
 
 			<div>
-				<label htmlFor="imguri">Image Url</label>
+				<label htmlFor="imgUri">Image Url</label>
 				<input
 					type="text"
-					id="imguri"
+					id="imgUri"
 					required
 					value={profile.imgUri}
 					onChange={handleInputChange}
-					name="imguri"
+					name="imgUri"
 				/>
 			</div>
 

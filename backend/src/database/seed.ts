@@ -53,3 +53,6 @@ const seed = async () => {
 };
 
 seed();
+
+// prepared statement to valid incoming postable data
+// https://stackoverflow.com/questions/49242772/how-to-create-prepared-statements-in-sequelize
